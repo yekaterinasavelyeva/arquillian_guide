@@ -1,5 +1,6 @@
 package org.arquillian.example;
 
+import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -22,7 +23,7 @@ public class GreeterTest {
     @Deployment
     public static JavaArchive createDeployment() {
         JavaArchive jar =  ShrinkWrap.create(JavaArchive.class)
-                .addClass(Greeter.class)
+                .addClasses(Greeter.class, PhraseBuilder.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(jar.toString(true));
         return jar;
